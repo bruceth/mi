@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
-// const r = fetch('/api/sina/history?len=200');
+const r = fetch('/api/sina/history?len=200');
 // let a = 2;
 // a += 2;
 
