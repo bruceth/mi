@@ -67,6 +67,7 @@ export class VHome extends View<CHome> {
         let siteHeader = this.controller.renderSiteHeader();
         return <>
             {siteHeader}
+            fdsajfdaldfjl
         </>
     });
 }
