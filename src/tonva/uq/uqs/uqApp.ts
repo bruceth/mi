@@ -1,6 +1,6 @@
-import { Uq } from "./uq";
-import { TuidImport, TuidLocal } from "./tuid";
-//import { loadAppUqs } from "../../net";
+import { Uq } from './uq';
+import { TuidImport, TuidLocal } from './tuid';
+//import { loadAppUqs } from '../../net';
 
 export class UqApp {
     name: string;

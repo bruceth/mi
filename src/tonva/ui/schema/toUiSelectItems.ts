@@ -1,4 +1,4 @@
-import { UiSelectListItem } from "./uiSchema";
+import { UiSelectListItem } from './uiSchema';
 
 export function toUiSelectItems(items: string[]):UiSelectListItem[] {
     if (items === undefined) return;

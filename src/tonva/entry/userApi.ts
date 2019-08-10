@@ -2,6 +2,17 @@ import {CenterApiBase} from '../net';
 import {User, decodeUserToken} from '../user';
 //import { nav } from '../ui';
 
+export interface RegisterParameter {
+    nick:string, 
+    user:string, 
+    pwd:string,
+    country:number, 
+    mobile:number, 
+    mobileCountry:number,
+    email:string,
+    verify:string,
+};
+
 export class UserApi extends CenterApiBase {
     async login(params: {user: string, pwd: string, guest: number}): Promise<any> {
         //(params as any).device = nav.local.device.get();
@@ -19,15 +30,7 @@ export class UserApi extends CenterApiBase {
         }
         // !== undefined) return decodeToken(token);
     }
-    async register(params: {
-        nick:string, 
-        user:string, 
-        pwd:string,
-        country:number, 
-        mobile:number, 
-        email:string,
-        verify:string,
-    }): Promise<any>
+    async register(params: RegisterParameter): Promise<any>
     {
         return await this.post('register', params);
     }

@@ -1,11 +1,11 @@
-import { VBand, VFieldBand, VArrBand, VFieldsBand, VSubmitBand, FieldRes } from "./vBand";
-import { Field, ArrFields } from "../../uqs";
-import { VForm, FormOptions } from "./vForm";
-import { FormItems, FieldUI, FormItem } from "../formUI";
-import { VSubmit } from "./vSubmit";
-import { VField, buildVField, VComputeField } from "./vField";
-import { VArr } from "./vArr";
-import { VTuidField } from "./vField/vTuidField";
+import { VBand, VFieldBand, VArrBand, VFieldsBand, VSubmitBand, FieldRes } from './vBand';
+import { Field, ArrFields } from '../../uqs';
+import { VForm, FormOptions } from './vForm';
+import { FormItems, FieldUI, FormItem } from '../formUI';
+import { VSubmit } from './vSubmit';
+import { VField, buildVField, VComputeField } from './vField';
+import { VArr } from './vArr';
+import { VTuidField } from './vField/vTuidField';
 
 export class BandsBuilder {
     private vForm: VForm;

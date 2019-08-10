@@ -149,6 +149,7 @@ export abstract class Entity {
         let arrs = this.arrFields; //schema['arrs'];
         if (arrs !== undefined) {
             for (let arr of arrs) {
+                //if (arr.isBus === true) continue;
                 this.packArr(ret, arr.fields, data[arr.name]);
             }
         }
@@ -308,20 +309,22 @@ export abstract class Entity {
         switch (f.type) {
             default: return v;
             case 'datetime':
-            case 'date':
             case 'time':
                 let date = new Date(Number(v));
                 return date;
-            case 'id':
+            case 'date':
+                let parts = v.split('-');
+                return new Date(Number(parts[0]), Number(parts[1])-1, Number(parts[2]));
             case 'tinyint':
             case 'smallint':
             case 'int':
-            case 'dec': return Number(v);
             case 'bigint':
+            case 'dec':
+                return Number(v);
+            case 'id':
                 let id = Number(v);
                 let {_tuid} = f;
                 if (_tuid === undefined) return id;
-                //_tuid.useId(id, true);
                 return _tuid.boxId(id);
         }
     }

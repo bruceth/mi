@@ -6,7 +6,7 @@ import {ListBase} from './base';
 import {Clickable} from './clickable';
 import {Static} from './static';
 import {Selectable} from './selectable';
-import "../../css/va-list.css";
+import '../../css/va-list.css';
 import { IObservableArray } from 'mobx';
 
 type StaticRow = string|JSX.Element|(()=>string|JSX.Element);

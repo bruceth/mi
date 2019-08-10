@@ -1,5 +1,5 @@
 import { PageItems } from '../../../pageItems';
-import { Tuid } from "../../uqs";
+import { Tuid } from '../../uqs';
 
 export class TuidPageItems<T> extends PageItems<T> {
     private tuid: Tuid;

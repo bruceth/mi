@@ -3,7 +3,7 @@ import { computed, action } from 'mobx';
 import classNames from 'classnames';
 import { observer } from 'mobx-react';
 import { FA } from '../../../../ui';
-import { ViewModel } from "../viewModel";
+import { ViewModel } from '../viewModel';
 import { VForm, FormMode } from '../vForm';
 import { Rule, RuleRequired, RuleInt, RuleNum, RuleMin, RuleMax } from '../rule';
 import { Field } from '../../../uqs';

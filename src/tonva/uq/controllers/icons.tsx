@@ -1,5 +1,5 @@
 import React from 'react';
-import { FA } from "../../ui";
+import { FA } from '../../ui';
 
 function icon(className:string, name:string) {
     return <FA className={className} name={name} fixWidth={true} />;

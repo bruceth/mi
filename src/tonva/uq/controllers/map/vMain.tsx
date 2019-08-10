@@ -52,7 +52,7 @@ export class VMapMain extends VEntity<Map, MapUI, CMap> {
             }
         }
         else {
-            border = "border-bottom";
+            border = 'border-bottom';
             let none = keyNone && keyNone(this.x);
             content = <List 
                 className="ml-4" 

@@ -1,19 +1,19 @@
-import { IObservableArray, observable } from "mobx";
-import { postWsToTop } from "../../../net";
+import { IObservableArray, observable } from 'mobx';
+import { postWsToTop } from '../../../net';
 import { TypeVPage, VPage } from '../../../ui';
 import { PageItems } from '../../../pageItems'
-import { Sheet, StateCount } from "../../uqs";
-import { CEntity, EntityUI, VEntity } from "../CVEntity";
-import { VSheetMain } from "./vMain";
-import { VSheetNew } from "./vNew";
-import { VSheetEdit } from "./vEdit";
-import { VSheetAction } from "./vSheetAction";
-import { VSheetSchema } from "./vSchema";
-import { VArchives } from "./vArchives";
-import { VSheetList } from "./vList";
-import { VArchived } from "./vArchived";
-import { VSheetSaved } from "./vSaved";
-import { VSheetProcessing } from "./vSheetProcessing";
+import { Sheet, StateCount } from '../../uqs';
+import { CEntity, EntityUI, VEntity } from '../CVEntity';
+import { VSheetMain } from './vMain';
+import { VSheetNew } from './vNew';
+import { VSheetEdit } from './vEdit';
+import { VSheetAction } from './vSheetAction';
+import { VSheetSchema } from './vSchema';
+import { VArchives } from './vArchives';
+import { VSheetList } from './vList';
+import { VArchived } from './vArchived';
+import { VSheetSaved } from './vSaved';
+import { VSheetProcessing } from './vSheetProcessing';
 
 export interface SheetActionUI {
     label: string;

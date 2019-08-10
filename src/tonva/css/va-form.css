@@ -11,6 +11,7 @@
 .tab>div:first-child {
   display: flex;
   flex: 1 1 auto;
+  height: 3rem; /* 2019-7-2：不知道为什么，只有加了这个，不管是xrem，tab的滚动才成立 */
 }
 .tab>div:last-child {
   display: flex;

@@ -1,8 +1,8 @@
-import React from "react";
-import { View, List, Muted } from "../../../ui";
-import { Entity } from "../../uqs";
-import { CLink } from "../link";
-import { CUq } from "./cUq";
+import React from 'react';
+import { View, List, Muted } from '../../../ui';
+import { Entity } from '../../uqs';
+import { CLink } from '../link';
+import { CUq } from './cUq';
 
 export class VUq extends View<CUq> {
     protected isSysVisible = false;

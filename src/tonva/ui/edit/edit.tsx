@@ -26,8 +26,8 @@ export interface EditProps {
 
 @observer
 export class Edit extends React.Component<EditProps> {
-    private defaultSepClassName = "border-top edit-sep-light-gray";
-    private defaultRowContainerClassName = "d-flex px-3 py-2 bg-white align-items-center";
+    private defaultSepClassName = 'border-top edit-sep-light-gray';
+    private defaultRowContainerClassName = 'd-flex px-3 py-2 bg-white align-items-center';
     private topBorder:JSX.Element;
     private bottomBorder:JSX.Element;
     private rowContainerClassName?: string;

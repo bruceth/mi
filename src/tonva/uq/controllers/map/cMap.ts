@@ -1,8 +1,8 @@
 import _ from 'lodash';
-import { CEntity, EntityUI } from "../CVEntity";
-import { Map, Tuid, BoxId, Field, fieldDefaultValue } from "../../uqs";
-import { VMapMain } from "./vMain";
-import { observable } from "mobx";
+import { CEntity, EntityUI } from '../CVEntity';
+import { Map, Tuid, BoxId, Field, fieldDefaultValue } from '../../uqs';
+import { VMapMain } from './vMain';
+import { observable } from 'mobx';
 import { PureJSONContent } from '../form/viewModel';
 import { VInputValues } from './inputValues';
 

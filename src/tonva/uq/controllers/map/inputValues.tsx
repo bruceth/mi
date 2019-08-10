@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { VEntity } from "../CVEntity";
-import { MapUI, CMap } from "./cMap";
-import { Map } from "../../uqs";
-import { Page } from "../../../ui";
+import { VEntity } from '../CVEntity';
+import { MapUI, CMap } from './cMap';
+import { Map } from '../../uqs';
+import { Page } from '../../../ui';
 import { VForm } from '../form';
 
 export class VInputValues extends VEntity<Map, MapUI, CMap> {

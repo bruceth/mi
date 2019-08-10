@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
-import { BoxId, Tuid } from "../uqs";
+import { BoxId, Tuid } from '../uqs';
 import { PureJSONContent } from '../controllers';
 
 export type TvTemplet = (values?:any, x?:any) => JSX.Element;

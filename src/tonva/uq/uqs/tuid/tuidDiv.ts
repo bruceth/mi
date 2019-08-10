@@ -1,9 +1,9 @@
-import { Tuid, TuidLocal } from "./tuid";
-import { IdCache, IdDivCache } from "./idCache";
-import { TuidBox, TuidBoxDiv } from "./tuidBox";
-import { BoxId, BoxDivId } from "./boxId";
-import { Field, Uq } from "../uq";
-import { Entity } from "../entity";
+import { Tuid, TuidLocal } from './tuid';
+import { IdCache, IdDivCache } from './idCache';
+import { TuidBox, TuidBoxDiv } from './tuidBox';
+import { BoxId, BoxDivId } from './boxId';
+import { Field, Uq } from '../uq';
+import { Entity } from '../entity';
 
 export class TuidDiv extends Entity {
     readonly typeName = 'div';

@@ -269,6 +269,10 @@ export class UqApi extends ApiBase {
         return await this.post('action/' + name, data);
     }
 
+    async actionReturns(name:string, data:object):Promise<any[][]> {
+        return await this.post('action/' + name + '/returns', data);
+    }
+
     async page(name:string, pageStart:any, pageSize:number, params:any):Promise<string> {
         let p:any;
         switch (typeof params) {
@@ -329,8 +333,8 @@ export class UnitxApi extends UqApi {
         let channelUI = new HttpChannelNavUI();
         let centerAppApi = new CenterAppApi('tv/', undefined);
         let ret = await centerAppApi.unitxUq(this.unitId);
-        let {token, url, urlDebug} = ret;
-        let realUrl = host.getUrlOrDebug(url, urlDebug);
+        let {token, db, url, urlTest} = ret;
+        let realUrl = host.getUrlOrTest(db, url, urlTest);
         this.token = token;
         return new HttpChannel(false, realUrl, token, channelUI);
     }
@@ -413,7 +417,9 @@ export class UqTokenApi extends CenterApiBase {
                     return _.clone(value);
                 }
             }
-            let ret = await this.get('app-uq', params);
+            let appUqParams:any = _.clone(params);
+            appUqParams.testing = host.testing;
+            let ret = await this.get('app-uq', appUqParams);
             if (ret === undefined) {
                 let {unit, uqOwner, uqName} = params;
                 let err = `center get app-uq(unit=${unit}, '${uqOwner}/${uqName}') - not exists or no unit-service`;
@@ -458,8 +464,9 @@ export interface UqData {
 
 export interface UqServiceData {
     id: number;
+    db: string;
     url: string;
-    urlDebug: string;
+    urlTest: string;
     token: string;
 }
 

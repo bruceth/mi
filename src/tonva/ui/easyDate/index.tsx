@@ -1,18 +1,30 @@
 import * as React from 'react';
 
 export interface EasyDateProps {
-    date: Date | string;
+    date: Date | number;
 }
 
-function renderDate(date:Date|string, withTime:boolean) {
-    if (!date) return null;
-    let d = (typeof date === 'string')? new Date(Date.parse(date)) : date;
+function renderDate(vDate:Date|number, withTime:boolean) {
+    if (!vDate) return null;
+    let date: Date;
+    switch (typeof vDate) {
+        default: date = vDate as Date; break;
+        case 'string': date = new Date(vDate); break;
+        case 'number': date = new Date((vDate as number)*1000); break;
+    }
+
     let now = new Date();
-    let tick = now.getTime() - d.getTime();
-    let nDate=now.getDate();
-    let _date=d.getDate(), hour=d.getHours(), minute=d.getMinutes(), month=d.getMonth()+1, year=d.getFullYear();
-    let nowYear = now.getFullYear();
-    let hm = withTime === true? ' ' + hour + ((minute<10?':0':':') + minute) : '';
+    let tick:number, nDate:number, _date:number, month:number, year:number, hm:string, nowYear:number;
+    let d = date;
+    tick = now.getTime() - d.getTime();
+    let hour=d.getHours(), minute=d.getMinutes();
+    nDate=now.getDate();
+    _date=d.getDate();
+    month=d.getMonth()+1;
+    year=d.getFullYear();
+    nowYear = now.getFullYear();
+    hm = withTime === true? ' ' + hour + ((minute<10?':0':':') + minute) : '';
+
     if (tick < -24*3600*1000) {
         if (year === nowYear)
             return month+'月'+_date+'日' + hm;
@@ -39,6 +51,6 @@ export class EasyDate extends React.Component<EasyDateProps> {
 
 export class EasyTime extends React.Component<EasyDateProps> {
     render() {
-        return renderDate(this.props.date, false);
+        return renderDate(this.props.date, true);
     }
 }

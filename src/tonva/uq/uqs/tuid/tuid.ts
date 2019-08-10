@@ -1,11 +1,10 @@
 import _ from 'lodash';
-import { Entity } from "../entity";
-import { IdCache } from "./idCache";
-import { TuidDiv } from "./tuidDiv";
-import { Uq, ArrFields, Field, SchemaFrom } from "../uq";
+import { Entity } from '../entity';
+import { IdCache } from './idCache';
+import { TuidDiv } from './tuidDiv';
+import { Uq, ArrFields, Field, SchemaFrom } from '../uq';
 import { TuidBox } from './tuidBox';
 import { BoxId } from './boxId';
-//import { TuidUI } from 'uq/controllers';
 
 export interface TuidSaveResult {
     id: number;
@@ -164,8 +163,28 @@ export class TuidLocal extends Tuid {
     }
 
     async save(id:number, props:any):Promise<TuidSaveResult> {
-        let params = _.clone(props);
-        params["$id"] = id;
+        let {fields} = this.schema;
+        let params:any = {$id: id};
+        for (let field of fields as Field[]) {
+            let {name, tuid, type} = field;
+            let val = props[name];
+            if (tuid !== undefined) {
+                if (typeof val === 'object') {
+                    if (val !== null) val = val.id;
+                }
+            }
+            else {
+                switch (type) {
+                    case 'date':
+                    case 'datetime':
+                        val = new Date(val).toISOString();
+                        val = (val as string).replace('T', ' ');
+                        val = (val as string).replace('Z', '');
+                        break;
+                }
+            }
+            params[name] = val;
+        }
         let ret = await this.uqApi.tuidSave(this.name, params);
         return ret;
     }

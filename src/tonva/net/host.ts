@@ -33,8 +33,22 @@ const hosts:{[name:string]:HostValue} = {
     }
 }
 
-function centerUrlFromHost(host:string) {return `http://${host}/`}
-function centerWsFromHost(host:string) {return `ws://${host}/tv/`}
+function centerUrlFromHost(host:string) {
+    if (host.startsWith('https://') === true) {
+        if (host.endsWith('/')) return host;
+        return host + '/';
+    }
+    return `http://${host}/`;
+}
+function centerWsFromHost(host:string) {
+    let https = 'https://';
+    if (host.startsWith(https) === true) {
+        host = host.substr(https.length);
+        if (host.endsWith('/') === true) host = host.substr(0, host.length-1);
+        return 'wss://' + host + '/tv/';
+    }
+    return `ws://${host}/tv/`
+}
 
 const fetchOptions = {
     method: "GET",
@@ -45,11 +59,13 @@ const fetchOptions = {
 };
 
 class Host {
+    testing: boolean;
     url: string;
     ws: string;
     resHost: string;
 
-    async start() {
+    async start(testing:boolean) {
+        this.testing = testing;
         if (isDevelopment === true) {
             await this.tryLocal();
         }
@@ -119,21 +135,25 @@ class Host {
         return resHost;
     }
 
-    getUrlOrDebug(url:string, urlDebug:string):string {
-        if (isDevelopment !== true) return url;
-        if (!urlDebug) return url;
-        for (let i in hosts) {
-            let host = hosts[i];
-            let {value, local} = host;
-            let hostString = `://${i}/`;
-            let pos = urlDebug.indexOf(hostString);
-            if (pos > 0) {
-                if (local === false) return url;
-                urlDebug = urlDebug.replace(hostString, `://${value}/`);
-                return urlDebug;
-            }
+    getUrlOrDebug(url:string, debugHost:string = 'uqhost'):string {
+        if (isDevelopment === false) return url;
+        let host = hosts[debugHost];
+        if (host === undefined) return url;
+        let {value, local} = host;
+        if (local === false) return url;
+        return `http://${value}/`;
+    }
+    getUrlOrTest(db:string, url:string, urlTest:string):string {
+        let path:string;
+        if (this.testing === true) {
+            if (urlTest !== '-') url = urlTest;
+            path = 'uq/test/' + db + '/';
         }
-        return url;
+        else {
+            path = 'uq/prod/' + db + '/';
+        }
+        url = this.getUrlOrDebug(url);
+        return url + path;
     }
 
     async localCheck(urlDebug: string):Promise<boolean> {

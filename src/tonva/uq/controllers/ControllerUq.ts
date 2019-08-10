@@ -1,5 +1,5 @@
-import { Controller } from "../../ui";
-import { CUq } from "./cUq";
+import { Controller } from '../../ui';
+import { CUq } from './cUq';
 
 export abstract class ControllerUq extends Controller {
     constructor(cUq: CUq, res:any) {

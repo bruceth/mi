@@ -1,7 +1,7 @@
-import { BoxId, BoxDivId } from "./boxId";
-import { Tuid } from "./tuid";
-import { TuidDiv } from "./tuidDiv";
-import { Field } from "../uq";
+import { BoxId, BoxDivId } from './boxId';
+import { Tuid } from './tuid';
+import { TuidDiv } from './tuidDiv';
+import { Field } from '../uq';
 
 // field._tuid 用这个接口
 // Tuid, TuidDiv 实现这个接口

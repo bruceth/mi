@@ -1,8 +1,8 @@
-import { StatelessComponent } from "react";
-import { CEntity, EntityUI } from "../CVEntity";
-import { Query } from "../../uqs";
-import { VQueryMain } from "./vQueryMain";
-import { VQuerySelect } from "./vQuerySelect";
+import { StatelessComponent } from 'react';
+import { CEntity, EntityUI } from '../CVEntity';
+import { Query } from '../../uqs';
+import { VQueryMain } from './vQueryMain';
+import { VQuerySelect } from './vQuerySelect';
 
 export interface QueryUI extends EntityUI {
     CQuery?: typeof CQuery;

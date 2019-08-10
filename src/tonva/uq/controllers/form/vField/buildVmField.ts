@@ -11,9 +11,10 @@ export function buildVField(form:VForm, field: Field, fieldUI: FieldUI, fieldRes
         case 'tinyint':
         case 'smallint':
         case 'int':
+        case 'bigint':
             vField = VIntField;
             break;
-        case 'bigint':
+        case 'id':
             let {_tuid} = field;
             if (_tuid !== undefined) return;
             vField = VIntField;

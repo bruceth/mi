@@ -1,7 +1,7 @@
-import { observable } from "mobx";
-import { isNumber } from "util";
-import { BoxId } from "./boxId";
-import { TuidLocal } from "./tuid";
+import { observable } from 'mobx';
+import { isNumber } from 'util';
+import { BoxId } from './boxId';
+import { TuidLocal } from './tuid';
 import { TuidDiv } from './tuidDiv'
 
 const maxCacheSize = 1000;

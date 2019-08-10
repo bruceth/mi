@@ -1,6 +1,6 @@
-import { CEntity, EntityUI } from "../CVEntity";
-import { Action } from "../../uqs";
-import { VActionMain } from "./vActionMain";
+import { CEntity, EntityUI } from '../CVEntity';
+import { Action } from '../../uqs';
+import { VActionMain } from './vActionMain';
 
 export interface ActionUI extends EntityUI {
     CAction?: typeof CAction;
@@ -16,5 +16,9 @@ export class CAction extends CEntity<Action, ActionUI> {
 
     async submit(values:any) {
         return this.entity.submit(values);
+    }
+
+    async submitReturns(values:any) {
+        return this.entity.submitReturns(values);
     }
 }

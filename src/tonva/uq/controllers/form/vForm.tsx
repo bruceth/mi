@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as _ from 'lodash';
-import { observer } from "mobx-react";
+import { observer } from 'mobx-react';
 import { VBand } from './vBand';
 import { BandsBuilder } from './bandsBuilder';
 import { Field, ArrFields } from '../../uqs';
