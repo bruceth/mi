@@ -1,4 +1,4 @@
-import {CenterApi, User} from '../tonva';
+import {CenterApi, User} from 'tonva';
 
 class Center extends CenterApi {
     async changePassword(param: {orgPassword:string, newPassword:string}) {

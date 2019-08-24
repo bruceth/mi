@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { CTuidMain } from '../tonva';
+import { CTuidMain, nav } from 'tonva';
 import { VSiteHeader } from './VSiteHeader';
 import { CMiApp } from '../CMiApp';
-import { PageItems, Controller } from '../tonva';
+import { PageItems, Controller } from 'tonva';
 import { VSearchHeader } from './VSearchHeader';
 import { VHome } from './VHome';
 
@@ -34,12 +34,17 @@ export class CHome extends Controller {
     constructor(cApp: CMiApp, res: any) {
         super(res);
 
+        this.buildPageItems();
         this.cApp = cApp;
         this.vHome = new VHome(this);
     }
 
     protected buildPageItems(): PageItems<any> {
-        return new HomePageItems<any>(this);
+        return this.PageItems = new HomePageItems<any>(this);
+    }
+
+    onPage = () => {
+        this.PageItems.more();
     }
 
     async searchMain(key: string) {
@@ -49,9 +54,8 @@ export class CHome extends Controller {
         if (key !== undefined) await this.PageItems.first(key);
     }
 
-
     async internalStart(param: any) {
-        this.openVPage(VHome);
+        //this.openVPage(VHome);
     }
 
     renderSiteHeader = () => {
@@ -62,9 +66,12 @@ export class CHome extends Controller {
         return this.renderView(VSearchHeader, size);
     }
 
+    
     renderHome = () => {
-        return this.vHome.render(undefined);
+        //return this.vHome.render(undefined);
+        return this.renderView(VHome);
     }
+    
 
     openMetaView = () => {
     }

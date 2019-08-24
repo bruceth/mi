@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Page, nav } from '../tonva';
+import { Page, nav } from 'tonva';
 
 export class About extends React.Component {
     private showLogs = () => {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { VPage, Page, View, List, LMR } from '../tonva';
+import { VPage, Page, View, List, LMR } from 'tonva';
 import { observer } from 'mobx-react';
 import { CHome } from './CHome';
 import {observable, IObservableArray, computed} from 'mobx';
@@ -36,8 +36,8 @@ const imgStyle: React.CSSProperties = {
 
 export class VHome extends View<CHome> {
   async open(param?: any) {
-    await this.controller.searchMain('');
-    this.openPage(this.page);
+    //await this.controller.searchMain('');
+    //this.openPage(this.page);
   }
 
   private renderSection = (item: any, index: number) => {
@@ -48,31 +48,36 @@ export class VHome extends View<CHome> {
   }
 
   render(param: any): JSX.Element {
-    return <this.content />
+    return <this.page />
   }
 
   private page = observer(() => {
-    let { openMetaView } = this.controller;
+    let { openMetaView, onPage } = this.controller;
+    let header = this.controller.renderSiteHeader();
     let viewMetaButton = <></>;
     if (this.controller.isLogined && this.controller.user.id === LIGUOSHENG) {
       viewMetaButton = <button type="button" className="btn w-100" onClick={openMetaView}>view</button>
     }
 
-    return <Page header={false} footer={viewMetaButton}>
+    return <Page header="ddddd"  onScrollBottom={onPage} 
+      headerClassName='bg-primary py-1 px-3'>
+      
       <this.content />
     </Page>;
   })
 
   private content = observer(() => {
-    let siteHeader = this.controller.renderSiteHeader();
+    let {renderSiteHeader, PageItems} = this.controller;
+    //let siteHeader = this.controller.renderSiteHeader();
+    /*
     let items = observable.array<any>([], {deep:true});
     if (this.controller.PageItems !== undefined) {
       items = this.controller.PageItems.items;
     }
+    */
     return <>
-      {siteHeader}
       <List
-        items={items}
+        items={PageItems.items}
         item={{ render: this.renderRow, onClick: this.clickRow, key: this.rowKey }}
         before={'搜索' + ' ' + '资料'}
       />
@@ -83,8 +88,8 @@ export class VHome extends View<CHome> {
 
   protected rowContent = (row: any): JSX.Element => {
     let { id, name, code, symbol } = row;
-    return <LMR left={name} right = {id}>
-      <div> {symbol}</div>
+    return <LMR className="px-3 py-2" left={name} right = {id}>
+      <div className="px-3"> {symbol}</div>
     </LMR>
   }
 

@@ -1,22 +1,20 @@
 import _ from 'lodash';
-import { HttpChannel } from '../tonva/net/httpChannel';
-import { HttpChannelNavUI } from '../tonva/net/httpChannelUI';
-import { appUq, logoutUqTokens, buildAppUq } from '../tonva/net/appBridge';
-import { ApiBase } from '../tonva/net/apiBase';
+import { HttpChannel } from './httpChannel';
+import { HttpChannelNavUI } from './httpChannelUI';
+import { ApiBase } from './apiBase';
 
 let channelUIs: { [name: string]: HttpChannel } = {};
 let channelNoUIs: { [name: string]: HttpChannel } = {};
 
 export class MiApi extends ApiBase {
   private apiName: string;
-  uq: string;
   url: string;
 
-  constructor(url:string, basePath: string, apiName:string, uq: string, showWaiting?: boolean) {
+  constructor(url:string, basePath: string, apiName:string, uqToken: string, showWaiting?: boolean) {
     super(basePath, showWaiting);
     this.showWaiting = showWaiting;
     this.apiName = apiName;
-    this.uq = uq;
+    this.token = uqToken;
     this.url = url;
   }
 
@@ -32,11 +30,10 @@ export class MiApi extends ApiBase {
     }
     let channel = channels[this.apiName];
     if (channel !== undefined) return channel;
-    let uqToken = appUq(this.uq);
-    if (!uqToken) debugger;
-    let { token } = uqToken;
-    this.token = token;
-    channel = new HttpChannel(false, this.url, token, channelUI);
+    //let uqToken = appUq(this.uq);
+    //if (!uqToken) debugger;
+    //let { token } = uqToken;
+    channel = new HttpChannel(false, this.url, this.token, channelUI);
     return channels[this.apiName] = channel;
   }
 

@@ -1,4 +1,4 @@
-import { UqUI } from '../../tonva';
+import { UqUI } from 'tonva';
 
 const uqUI:UqUI = {
 }

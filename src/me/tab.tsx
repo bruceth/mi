@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {nav, User, Page} from '../tonva';
-import {Prop, Media, IconText, FA, PropGrid} from '../tonva';
-import { consts } from '../home/consts';
+import {nav, User, Page} from 'tonva';
+import {Prop, Media, IconText, FA, PropGrid} from 'tonva';
+import { consts } from '../consts';
 import {About} from './about';
 import ChangePasswordPage from './changePassword';
 

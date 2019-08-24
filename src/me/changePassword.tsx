@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Page, nav, Form, Context, Schema, UiSchema, UiPasswordItem} from '../tonva';
+import {Page, nav, Form, Context, Schema, UiSchema, UiPasswordItem} from 'tonva';
 import center from './center';
 
 const schema: Schema = [

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { VPage, TabCaptionComponent, Page, Tabs } from '../tonva';
+import { VPage, TabCaptionComponent, Page, Tabs } from 'tonva';
 import { CMiApp } from '../CMiApp';
 import { observable } from 'mobx';
 import { meTab } from '../me';

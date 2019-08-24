@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Loadable from 'react-loadable';
-import { Loading } from '../tonva';
+import { Loading } from 'tonva';
 
 export const meTab = () => {
     let LoadableComponent = Loadable({

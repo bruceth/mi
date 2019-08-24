@@ -1,4 +1,4 @@
-import { User, Map, BoxId, CUq } from './tonva';
+import { User, Map, BoxId, CUq } from 'tonva';
 
 export class WebUser {
 
