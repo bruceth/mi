@@ -4,26 +4,24 @@ import {nav} from 'tonva';
 import { consts } from '../consts';
 
 export async function httpGet(url:string, params?:any):Promise<any> {
-    let channel = new HttpChannel(false, url, undefined, undefined);
+    let channel = new HttpChannel(url, undefined, undefined);
     let ret = await channel.get('', params);
     return ret;
 }
 
 export async function httpPost(url:string, params?:any):Promise<any> {
-    let channel = new HttpChannel(false, url, undefined, undefined);
+    let channel = new HttpChannel(url, undefined, undefined);
     let ret = await channel.post('', params);
     return ret;
 }
 
 export class HttpChannel {
-    private isCenter: boolean;
     private hostUrl: string;
     private apiToken: string;
     private ui?: HttpChannelUI;
     private timeout: number;
 
-    constructor(isCenter: boolean, hostUrl: string, apiToken:string, ui?: HttpChannelUI) {
-        this.isCenter = isCenter;
+    constructor(hostUrl: string, apiToken:string, ui?: HttpChannelUI) {
         this.hostUrl = hostUrl;
         this.apiToken = apiToken;
         this.ui = ui;

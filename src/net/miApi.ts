@@ -30,10 +30,7 @@ export class MiApi extends ApiBase {
     }
     let channel = channels[this.apiName];
     if (channel !== undefined) return channel;
-    //let uqToken = appUq(this.uq);
-    //if (!uqToken) debugger;
-    //let { token } = uqToken;
-    channel = new HttpChannel(false, this.url, this.token, channelUI);
+    channel = new HttpChannel(this.url, this.token, channelUI);
     return channels[this.apiName] = channel;
   }
 
