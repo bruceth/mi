@@ -1,0 +1,14 @@
+TUID 股票 ver 0.1 (
+  id _,
+  main symbol char(16) not null,
+  main market char(8) not null,
+  main code char(16) not null,
+  main name char(32) not null,
+  main alias char(32),
+  unique (symbol),
+);
+
+MAP UserStocks (
+  key user int not null,
+  key stock id 股票 not null,
+);
