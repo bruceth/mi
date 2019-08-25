@@ -4,8 +4,6 @@ import { observer } from 'mobx-react';
 import { CHome } from './CHome';
 import {observable, IObservableArray, computed} from 'mobx';
 
-const LIGUOSHENG = 5;
-
 interface CatItem {
   title: string;
   sub: string[];
@@ -55,11 +53,11 @@ export class VHome extends View<CHome> {
     let { openMetaView, onPage } = this.controller;
     let header = this.controller.renderSiteHeader();
     let viewMetaButton = <></>;
-    if (this.controller.isLogined && this.controller.user.id === LIGUOSHENG) {
+    if (this.controller.isLogined) {
       viewMetaButton = <button type="button" className="btn w-100" onClick={openMetaView}>view</button>
     }
 
-    return <Page header="ddddd"  onScrollBottom={onPage} 
+    return <Page header="股票"  onScrollBottom={onPage} 
       headerClassName='bg-primary py-1 px-3'>
       
       <this.content />
@@ -67,14 +65,7 @@ export class VHome extends View<CHome> {
   })
 
   private content = observer(() => {
-    let {renderSiteHeader, PageItems} = this.controller;
-    //let siteHeader = this.controller.renderSiteHeader();
-    /*
-    let items = observable.array<any>([], {deep:true});
-    if (this.controller.PageItems !== undefined) {
-      items = this.controller.PageItems.items;
-    }
-    */
+    let {PageItems} = this.controller;
     return <>
       <List
         items={PageItems.items}

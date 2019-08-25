@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { CApp, CUq, Controller, VPage } from 'tonva';
-import { CHome } from './home/CHome';
+import { CHome } from './home';
 import { consts } from './consts';
-import { MiApi } from './net/miApi';
+import { MiApi } from './net';
 import {nav} from 'tonva';
 
 export class CMiApp extends CApp {
