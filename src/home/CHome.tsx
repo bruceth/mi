@@ -15,12 +15,19 @@ class HomePageItems<T> extends PageItems<T> {
         this.firstSize = 30;
     }
     protected async load(param: any, pageStart: any, pageSize: number): Promise<any[]> {
-        let result = await this.cHome.cApp.miApi.page('q_stocksquery', [], pageStart, pageSize);
+        let query = {
+            name:'pe',
+            pageStart:pageStart,
+            pageSize:pageSize,
+            user:this.cHome.user.id,
+            yearlen: 1,
+        };
+        let result = await this.cHome.cApp.miApi.process(query, []);
         if (Array.isArray(result) === false) return [];
         return result as any[];
     }
     protected setPageStart(item: any) {
-        this.pageStart = item === undefined ? 0 : item.id;
+        this.pageStart = item === undefined ? 0 : item.order;
     }
 }
 

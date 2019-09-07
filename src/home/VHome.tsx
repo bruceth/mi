@@ -64,23 +64,43 @@ export class VHome extends View<CHome> {
     </Page>;
   })
 
+  private onSelect = (item:any, isSelected:boolean, anySelected:boolean) => {
+
+  }
+
+  private renderTestRow = () => {
+    return <div>ddd</div>
+  }
+
   private content = observer(() => {
     let {PageItems} = this.controller;
+    let header = <div className="px-3">
+      <div className="px-3" style={this.width6} />
+      <div className="px-3" style={this.width8}>PE</div>
+      <div className="px-3" style={this.width8}>ROE</div>
+      <div className="px-3" style={this.width8}>PRICE</div>
+    </div>;
     return <>
-      <List
+      <List header={header}
         items={PageItems.items}
-        item={{ render: this.renderRow, onClick: this.clickRow, key: this.rowKey }}
+        item={{ render: this.renderRow, onClick: this.onSelected, key: this.rowKey }}
         before={'搜索' + ' ' + '资料'}
       />
     </>
   });
 
   renderRow = (item: any, index: number): JSX.Element => <this.rowContent {...item} />;
-
+  private width6 = {width: '6rem'};
+  private width8 = {width: '8rem'};
   protected rowContent = (row: any): JSX.Element => {
-    let { id, name, code, symbol } = row;
-    return <LMR className="px-3 py-2" left={name} right = {id}>
-      <div className="px-3"> {symbol}</div>
+    let { id, name, code, pe, roe, price, order } = row as {id:number, name:string, code:string, symbol:string, pe:number, roe:number, price:number, order:number};
+    let left = <div className="" style={this.width6}><span className="text-primary">{name}</span><br/>{code}</div>
+    return <LMR className="px-3 py-2" left={left} right = {order.toString()}>
+      <div className="d-flex flex-wrap">
+        <div className="px-3 d-flex" style={this.width8}>{pe.toFixed(2)}</div>
+        <div className="px-3" style={this.width8}> {(roe * 100).toFixed(2)}</div>
+        <div className="px-3" style={this.width8}> {price.toFixed(2)}</div>
+      </div>
     </LMR>
   }
 
@@ -89,8 +109,8 @@ export class VHome extends View<CHome> {
     return id;
   }
 
-  protected async onSelected(item: any): Promise<void> {
-
+  protected onSelected = async (item: any): Promise<void> => {
+    let a = 0;
   }
 
   private callOnSelected(item: any) {

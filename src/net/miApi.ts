@@ -10,7 +10,7 @@ export class MiApi extends ApiBase {
   private apiName: string;
   url: string;
 
-  constructor(url:string, basePath: string, apiName:string, uqToken: string, showWaiting?: boolean) {
+  constructor(url: string, basePath: string, apiName: string, uqToken: string, showWaiting?: boolean) {
     super(basePath, showWaiting);
     this.showWaiting = showWaiting;
     this.apiName = apiName;
@@ -35,7 +35,7 @@ export class MiApi extends ApiBase {
   }
 
   async query(name: string, params: any[]): Promise<any> {
-    let pbody = { call:name, params:params };
+    let pbody = { call: name, params: params };
     let ret = await this.post('sql/call', pbody);
     return ret;
   }
@@ -48,7 +48,12 @@ export class MiApi extends ApiBase {
     }
     p.push(pageStart);
     p.push(pageSize);
-    let pbody = { call:name, params:p };
+    let pbody = { call: name, params: p };
     return await this.post('sql/call', pbody);
+  }
+
+  async process(proc: any, params: any[]): Promise<any> {
+    let pbody = { proc: proc, params: params };
+    return await this.post('sql/query', pbody);
   }
 }
