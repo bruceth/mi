@@ -95,7 +95,7 @@ export class VHome extends View<CHome> {
   protected rowContent = (row: any): JSX.Element => {
     let { id, name, code, pe, roe, price, order } = row as {id:number, name:string, code:string, symbol:string, pe:number, roe:number, price:number, order:number};
     let left = <div className="" style={this.width6}><span className="text-primary">{name}</span><br/>{code}</div>
-    return <LMR className="px-3 py-2" left={left} right = {order.toString()} onClick={()=>this.onClickName(row)}>
+    return <LMR className="px-3 py-2" left={left} right = {order.toString()} onClick={()=>this.onClickName(event, row)}>
       <div className="d-flex flex-wrap">
         <div className="px-3 d-flex" style={this.width8}>{pe.toFixed(2)}</div>
         <div className="px-3" style={this.width8}> {(roe * 100).toFixed(2)}</div>
@@ -109,13 +109,11 @@ export class VHome extends View<CHome> {
     return id;
   }
 
-  protected onClickName = (item: any) => {
+  protected onClickName = (event, item: any) => {
     let {symbol} = item;
+    event.preventDefault();
     let url = `http://finance.sina.com.cn/realstock/company/${symbol}/nc.shtml`;
-    var win = window.open(url, '_blank');
-    win.blur();
-    window.focus();
-    return false;
+    window.open(url, '_blank');
   }
 
   protected onSelected = async (item: any): Promise<void> => {
