@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { nav } from 'tonva';
 import { PageItems, Controller } from 'tonva';
+import { CUqBase } from '../CUqBase';
 import { CStockInfo } from '../stockinfo/CStockInfo';
 import { VSiteHeader } from './VSiteHeader';
 //import { CMiApp } from '../CMiApp';
 import { VSearchHeader } from './VSearchHeader';
 import { VHome } from './VHome';
-import { CUqBase } from 'CUqBase';
 
 class HomePageItems<T> extends PageItems<T> {
     cHome: CHome;
