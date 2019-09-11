@@ -1,8 +1,8 @@
 import { AppUI, CApp } from "tonva";
-import { VHome } from './main';
-import { CMiApp } from '../CMiApp';
-import miUI from './mi';
-
+//import { VHome } from './main';
+//import { CMiApp } from '../CMiApp';
+//import miUI from './mi';
+/*
 const ui: AppUI = {
     appName: "bruce/mi",
     CApp: CMiApp,
@@ -13,3 +13,4 @@ const ui: AppUI = {
 }
 
 export default ui;
+*/

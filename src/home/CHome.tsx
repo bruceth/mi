@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { CTuidMain, nav } from 'tonva';
-import { VSiteHeader } from './VSiteHeader';
-import { CMiApp } from '../CMiApp';
+import { nav } from 'tonva';
 import { PageItems, Controller } from 'tonva';
+import { CStockInfo } from '../stockinfo/CStockInfo';
+import { VSiteHeader } from './VSiteHeader';
+//import { CMiApp } from '../CMiApp';
 import { VSearchHeader } from './VSearchHeader';
 import { VHome } from './VHome';
+import { CUqBase } from 'CUqBase';
 
 class HomePageItems<T> extends PageItems<T> {
     cHome: CHome;
@@ -31,13 +33,14 @@ class HomePageItems<T> extends PageItems<T> {
     }
 }
 
-export class CHome extends Controller {
+export class CHome extends CUqBase {
     PageItems: PageItems<any>;
 
-    cApp: CMiApp;
+    //cApp: CMiApp;
 
     vHome: VHome;
 
+    /*
     constructor(cApp: CMiApp, res: any) {
         super(res);
 
@@ -45,6 +48,7 @@ export class CHome extends Controller {
         this.cApp = cApp;
         this.vHome = new VHome(this);
     }
+    */
 
     protected buildPageItems(): PageItems<any> {
         return this.PageItems = new HomePageItems<any>(this);
@@ -84,4 +88,9 @@ export class CHome extends Controller {
     }
 
     tab = () => <this.renderHome />;
+
+    openStockInfo = (item:any) => {
+        let cStockInfo = this.newC(CStockInfo); // new CStockInfo(this.cApp, undefined);
+        cStockInfo.start(item);
+    }
 }
