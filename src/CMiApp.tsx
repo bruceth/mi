@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { CApp, CUq, Controller, VPage, CAppBase } from 'tonva';
+import { CApp, CUq, Controller, VPage, CAppBase, IConstructor } from 'tonva';
 import { CHome } from './home';
 import { consts } from './consts';
 import { MiApi } from './net';
 import {nav} from 'tonva';
 import { VHome } from 'ui/main';
+import { CUqBase } from './CUqBase';
 
 export class CMiApp extends CAppBase {
   cHome: CHome;
@@ -20,7 +21,7 @@ export class CMiApp extends CAppBase {
 
     let miHost = consts.isDevelopment ? consts.miApiHostDebug : consts.miApiHost;
     this.miApi = new MiApi(miHost, 'fsjs/', 'miapi', token, false);
-    this.cHome = this.newC new CHome(this, undefined);
+    this.cHome = this.newC(CHome); //new CHome(this, undefined);
     let params = [];
     //let ret = await this.miApi.page('q_stocksquery', params, 0, 100);
     let env = process.env;
@@ -28,6 +29,11 @@ export class CMiApp extends CAppBase {
     //this.showMain();
     this.openVPage(VHome);
   }
+
+  protected newC<T extends CUqBase>(type: IConstructor<T>):T {
+    return new type(this);
+  }
+
 
   /*
   showMain(initTabName?: string) {
