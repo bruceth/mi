@@ -1,21 +1,10 @@
 import * as React from 'react';
-import { VPage, Page, View, List, LMR } from 'tonva';
 import { observer } from 'mobx-react';
+import { VPage, Page, View, List, LMR } from 'tonva';
 import { CHome } from './CHome';
-import {observable, IObservableArray, computed} from 'mobx';
+import { BaseStockInfo } from '../stockinfo';
 
 export class VHome extends View<CHome> {
-  async open(param?: any) {
-    //await this.controller.searchMain('');
-    //this.openPage(this.page);
-  }
-
-  private renderSection = (item: any, index: number) => {
-    return <section>
-      <h4>{item.title}<small className="text-muted">{item.subtitle}</small></h4>
-      <p>{item.content}</p>
-    </section>
-  }
 
   render(param: any): JSX.Element {
     return <this.page />
@@ -60,7 +49,7 @@ export class VHome extends View<CHome> {
   private width6 = {width: '6rem'};
   private width8 = {width: '8rem'};
   protected rowContent = (row: any): JSX.Element => {
-    let { id, name, code, pe, roe, price, order } = row as {id:number, name:string, code:string, symbol:string, pe:number, roe:number, price:number, order:number};
+    let { id, name, code, pe, roe, price, order } = row as BaseStockInfo;
     let left = <div className="" style={this.width6}><span className="text-primary">{name}</span><br/>{code}</div>
     return <LMR className="px-3 py-2" left={left} right = {order.toString()} onClick={()=>this.onClickName(row)}>
       <div className="d-flex flex-wrap">
