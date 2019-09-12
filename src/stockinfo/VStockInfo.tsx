@@ -2,6 +2,7 @@ import * as React from 'react';
 import { VPage, Page, View, List, LMR } from 'tonva';
 import { observer } from 'mobx-react';
 import { CStockInfo } from './CStockInfo'
+import { BaseStockInfo } from './StockInfoType';
 
 export class VStockInfo extends VPage<CStockInfo> {
   async open(param?: any) {

@@ -6,7 +6,7 @@ import { ApiBase } from './apiBase';
 let channelUIs: { [name: string]: HttpChannel } = {};
 let channelNoUIs: { [name: string]: HttpChannel } = {};
 
-export class MiApi extends ApiBase {
+class MiApiChannel extends ApiBase {
   private apiName: string;
   url: string;
 
@@ -33,11 +33,18 @@ export class MiApi extends ApiBase {
     channel = new HttpChannel(this.url, this.token, channelUI);
     return channels[this.apiName] = channel;
   }
+}
+
+export class MiApi {
+  private channel: MiApiChannel;
+
+  constructor(url: string, basePath: string, apiName: string, uqToken: string, showWaiting?: boolean) {
+    this.channel = new MiApiChannel(url, basePath, apiName, uqToken, showWaiting);
+  }
 
   async query(name: string, params: any[]): Promise<any> {
     let pbody = { call: name, params: params };
-    let ret = await this.post('sql/call', pbody);
-    return ret;
+    return await this.channel.post('sql/call', pbody);
   }
 
   async page(name: string, params: any[], pageStart: number, pageSize: number): Promise<any> {
@@ -49,11 +56,11 @@ export class MiApi extends ApiBase {
     p.push(pageStart);
     p.push(pageSize);
     let pbody = { call: name, params: p };
-    return await this.post('sql/call', pbody);
+    return await this.channel.post('sql/call', pbody);
   }
 
   async process(proc: any, params: any[]): Promise<any> {
     let pbody = { proc: proc, params: params };
-    return await this.post('sql/query', pbody);
+    return await this.channel.post('sql/query', pbody);
   }
 }

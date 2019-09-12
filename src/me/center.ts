@@ -1,4 +1,4 @@
-import {CenterApi, User} from 'tonva';
+/*import {CenterApi, User} from 'tonva';
 
 class Center extends CenterApi {
     async changePassword(param: {orgPassword:string, newPassword:string}) {
@@ -8,3 +8,4 @@ class Center extends CenterApi {
 
 const center = new Center('tv/', undefined);
 export default center;
+*/

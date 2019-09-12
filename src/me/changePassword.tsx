@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Page, nav, Form, Context, Schema, UiSchema, UiPasswordItem} from 'tonva';
-import center from './center';
+//import center from './center';
 
 const schema: Schema = [
     {name:'orgPassword', type: 'string', required: true},
@@ -46,7 +46,7 @@ export default class ChangePasswordPage extends React.Component {
             context.setValue('newPassword1', '');
             return '新密码错误，请重新输入';
         }
-        let ret = await center.changePassword({orgPassword: orgPassword, newPassword:newPassword});
+        let ret = false; //await center.changePassword({orgPassword: orgPassword, newPassword:newPassword});
         if (ret === false) {
             context.setValue('orgPassword', '');
             return '原密码错误';

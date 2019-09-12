@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { observable, IObservableArray, computed, isObservableArray } from 'mobx';
-import { VStockInfo } from './VStockInfo'
 import { CUqBase } from '../CUqBase';
 import { CMiApp } from '../CMiApp';
+import { VStockInfo } from './VStockInfo'
+import { BaseStockInfo } from './StockInfoType';
 
 export class CStockInfo extends CUqBase {
-  cApp: CMiApp;
-  baseItem: any;
+  readonly cApp: CMiApp;
+  baseItem: BaseStockInfo;
   @observable protected loaded: boolean = false;
   protected _items: IObservableArray<any> = observable.array<any>([], { deep: true });
   @observable allLoaded: boolean = false;
@@ -15,25 +16,27 @@ export class CStockInfo extends CUqBase {
     return this._items;
   }
 
-  /*
-  constructor(cApp: CMiApp, res: any) {
-    super(res);
-
-    this.cApp = cApp;
-    this._items = observable.array<any>([], { deep: true });
-  }
-  */
-
   loadData = () => {
     this.loading();
   }
 
   loading = async () => {
+    if (!this.baseItem)
+      return;
+    let { id } = this.baseItem;
+    let ret = await this.cApp.miApi.query('q_stockallinfo', [id]);
+    if (Array.isArray(ret)) {
+      if (this._items.length > 0) {
+        this._items.clear();
+      }
+      this._items.push(...ret);
+    }
+
     this.loaded = true;
   }
 
   async internalStart(param: any) {
-    this.baseItem = param;
+    this.baseItem = param as BaseStockInfo;
     this.loadData();
     this.openVPage(VStockInfo);
   }
