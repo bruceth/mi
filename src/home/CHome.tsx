@@ -2,7 +2,7 @@ import * as React from 'react';
 import { nav } from 'tonva';
 import { PageItems, Controller } from 'tonva';
 import { CUqBase } from '../CUqBase';
-import { CStockInfo, BaseStockInfo } from '../stockinfo';
+import { CStockInfo, NStockInfo } from '../stockinfo';
 import { VSiteHeader } from './VSiteHeader';
 import { VSearchHeader } from './VSearchHeader';
 import { VHome } from './VHome';
@@ -90,7 +90,7 @@ export class CHome extends CUqBase {
 
     tab = () => <this.renderHome />;
 
-    openStockInfo = (item:BaseStockInfo) => {
+    openStockInfo = (item:NStockInfo) => {
         let cStockInfo = this.newC(CStockInfo); // new CStockInfo(this.cApp, undefined);
         cStockInfo.start(item);
     }

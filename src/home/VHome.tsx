@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
 import { VPage, Page, View, List, LMR } from 'tonva';
+import { NStockInfo } from '../stockinfo';
 import { CHome } from './CHome';
-import { BaseStockInfo } from '../stockinfo';
 
 export class VHome extends View<CHome> {
 
@@ -49,7 +49,7 @@ export class VHome extends View<CHome> {
   private width6 = {width: '6rem'};
   private width8 = {width: '8rem'};
   protected rowContent = (row: any): JSX.Element => {
-    let { id, name, code, pe, roe, price, order } = row as BaseStockInfo;
+    let { id, name, code, pe, roe, price, order } = row as NStockInfo;
     let left = <div className="" style={this.width6}><span className="text-primary">{name}</span><br/>{code}</div>
     return <LMR className="px-3 py-2" left={left} right = {order.toString()} onClick={()=>this.onClickName(row)}>
       <div className="d-flex flex-wrap">
@@ -65,7 +65,7 @@ export class VHome extends View<CHome> {
     return id;
   }
 
-  protected onClickName = (item: any) => {
+  protected onClickName = (item: NStockInfo) => {
     this.controller.openStockInfo(item);
     /* let {symbol} = item;
     event.preventDefault();
