@@ -8,7 +8,7 @@ import { CMiApp } from 'CMiApp';
 
 const appConfig:AppConfig = {
   appName: 'bruce/mi',
-  version: '1.00',
+  version: '1.01',
   tvs: undefined, //TVs;
 };
 

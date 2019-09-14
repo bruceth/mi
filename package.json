@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "homepage": ".",
   "private": true,
-  "proxy": "http://localhost:6010",
+  "proxy.old": "http://localhost:6010",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
     "font-awesome": "^4.7.0",
     "jwt-decode": "^2.2.0",
-    "mobx": "^5.10.1",
-    "mobx-react": "^6.0.3",
+    "mobx": "^5.13.0",
+    "mobx-react": "^6.1.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-loadable": "^5.5.0",
@@ -18,7 +18,7 @@
     "tonva": "^1.0.64"
   },
   "scripts": {
-    "start": "set port=5103 && react-scripts-ts start",
+    "start": "set ENV=production && set port=5103 && react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"

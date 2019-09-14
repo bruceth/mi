@@ -12,3 +12,46 @@ MAP UserStocks (
   key user int not null,
   key stock id 股票 not null,
 );
+
+TUID Tag (
+  id,
+  main name char(10) not null,
+  user ID $user,
+
+  unique (user, name),
+);
+
+MAP TagStock (
+  key user ID $user,
+  key tag ID Tag,
+  key stock ID 股票,
+  index stock_tag (user, stock, tag),
+);
+
+ACTION SaveTag (
+  id ID,
+  name char(10)
+) 
+RETURNS ret (
+  retId ID
+){
+  var retId ID;
+  if id is null {
+    TUID Tag into retId unique($user, name);
+  }
+  else {
+    TUID Tag into retId id(id) unique($user, name);
+  }
+  into ret select retId as retId;
+};
+
+QUERY AllTags ()
+RETURNS ret (
+  id ID,
+  name char(10)
+) {
+  into ret select a.id, a.name
+    from Tag as a
+    where a.user=$user;
+};
+
