@@ -38,7 +38,7 @@ export class VHome extends View<CHome> {
     </div>;
     return <>
       <List header={header}
-        items={PageItems.items}
+        items={PageItems}
         item={{ render: this.renderRow, onClick: this.onSelected, key: this.rowKey }}
         before={'搜索' + ' ' + '资料'}
       />
