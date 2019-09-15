@@ -55,3 +55,19 @@ RETURNS ret (
     where a.user=$user;
 };
 
+
+-- Group by 后面，必须用as加别名。如果是单个字段不是表达式，比如a.tag，别名默认是tag。
+-- select上的字段，如果是tag，就是group字段，如果是a.tag，就是不能跟sum匹配
+QUERY testGroup()
+returns ret (
+  tag ID,
+  tag1 bigint,
+  c int,
+  stock bigint
+) {
+
+  into ret select tag, tag1, count(*) as c, sum(a.stock) as stock
+    from TagStock as a
+    where a.user=$user
+    group by a.tag, a.tag+1 as tag1;
+};
