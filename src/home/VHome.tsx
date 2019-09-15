@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
-import { VPage, Page, View, List, LMR } from 'tonva';
+import { VPage, Page, View, List, LMR, FA } from 'tonva';
 import { NStockInfo } from '../stockinfo';
 import { CHome } from './CHome';
 
@@ -31,10 +31,10 @@ export class VHome extends View<CHome> {
   private content = observer(() => {
     let {PageItems} = this.controller;
     let header = <div className="px-3">
-      <div className="px-3" style={this.width6} />
-      <div className="px-3" style={this.width8}>PE</div>
-      <div className="px-3" style={this.width8}>ROE</div>
-      <div className="px-3" style={this.width8}>PRICE</div>
+      <div className="px-3 c6"/>
+      <div className="px-3 c8">PE</div>
+      <div className="px-3 c8">ROE</div>
+      <div className="px-3 c8">PRICE</div>
     </div>;
     return <>
       <List header={header}
@@ -46,16 +46,14 @@ export class VHome extends View<CHome> {
   });
 
   renderRow = (item: any, index: number): JSX.Element => <this.rowContent {...item} />;
-  private width6 = {width: '6rem'};
-  private width8 = {width: '8rem'};
   protected rowContent = (row: any): JSX.Element => {
     let { id, name, code, pe, roe, price, order } = row as NStockInfo;
-    let left = <div className="" style={this.width6}><span className="text-primary">{name}</span><br/>{code}</div>
+    let left = <div className="c6"><span className="text-primary">{name}</span><br/>{code}</div>
     return <LMR className="px-3 py-2" left={left} right = {order.toString()} onClick={()=>this.onClickName(row)}>
       <div className="d-flex flex-wrap">
-        <div className="px-3 d-flex" style={this.width8}>{pe.toFixed(2)}</div>
-        <div className="px-3" style={this.width8}> {(roe * 100).toFixed(2)}</div>
-        <div className="px-3" style={this.width8}> {price.toFixed(2)}</div>
+        <div className="px-3 c8 d-flex">{pe.toFixed(2)}</div>
+        <div className="px-3 c8"> {roe===undefined?'':(roe * 100).toFixed(2)}</div>
+        <div className="px-3 c8"> {price.toFixed(2)}</div>
       </div>
     </LMR>
   }
