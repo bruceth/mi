@@ -53,12 +53,10 @@ RETURNS ret (
 QUERY TagsStockCount ()
 RETURNS ret (
   id ID,
-  name char(10),
   count int
 ) {
-  into ret select b.id, b.name, COUNT(a.stock) as count
+  into ret select a.tag as id, count(*) as count
     from TagStock as a 
-    join Tag as b on a.user=b.user and a.tag=b.id
     where a.user=$user
     group by a.tag;
 };
