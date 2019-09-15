@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { VPage, Page, View, List, LMR, left0 } from 'tonva';
+import { VPage, Page, View, List, LMR, left0, FA } from 'tonva';
 import { observer } from 'mobx-react';
 import { CStockInfo } from './CStockInfo'
 import { NStockInfo, StockCapitalearning, StockBonus } from './StockInfoType';
@@ -38,7 +38,6 @@ export class VStockInfo extends VPage<CStockInfo> {
   });
 
   private caption = (value:string) => <span className="text-muted small">{value}: </span>;
-  
 
   private baseInfo = () => {
     let {baseItem} = this.controller;
@@ -46,7 +45,7 @@ export class VStockInfo extends VPage<CStockInfo> {
     return <div className="px-3 py-2 bg-white" onClick={() => this.onClickName(this.controller.baseItem)}>
       <div className="d-flex flex-wrap">
         <div className="px-3 c8">{this.caption('PE')}{pe.toFixed(2)}</div>
-        <div className="px-3 c8">{this.caption('ROE')}{(roe * 100).toFixed(2)}</div>
+        <div className="px-3 c8">{this.caption('ROE')}{roe===undefined?'':(roe * 100).toFixed(2)}</div>
         <div className="px-3 c8">{this.caption('Price')}{price.toFixed(2)}</div>
       </div>    
     </div>;

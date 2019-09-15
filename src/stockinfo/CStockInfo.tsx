@@ -57,11 +57,10 @@ export class CStockInfo extends CUqBase {
   loading = async () => {
     if (!this.baseItem)
       return;
-    //this.tags.push({name:'a'}, {name:'b'});
     let { id } = this.baseItem;
     let rets = await Promise.all([
       this.cApp.miApi.query('q_stockallinfo', [id]),
-      this.uqs.mi.TagStock.query({user: nav.user.id, stock: this.baseItem.id})
+      this.uqs.mi.TagStock.query({user: nav.user.id, stock: id})
     ]);
     this.stockTags = rets[1].ret;
     let ret = rets[0];
@@ -158,9 +157,17 @@ export class CStockInfo extends CUqBase {
     };
     if (isSelected === true) {
       let ret = await this.uqs.mi.TagStock.add(param);
+      let newTag = {
+        tag: {
+          id: tag.id,
+        }
+      }
+      this.stockTags.push(newTag);
     }
     else {
       let ret = await this.uqs.mi.TagStock.del(param);
+      let i = this.stockTags.findIndex(v=>v.tag.id === tag.id);
+      this.stockTags.splice(i, 1);
     }
   }
 }

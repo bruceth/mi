@@ -1,7 +1,7 @@
 import * as React from 'react';
+import { observer } from 'mobx-react-lite';
 import { VPage, Page, FA, List, Form, ItemSchema, StringSchema, UiInputItem, UiSchema, Context } from 'tonva';
 import { CStockInfo } from './CStockInfo';
-import { observer } from 'mobx-react-lite';
 
 export class VTags extends VPage<CStockInfo> {
     async open(param?: any) {
