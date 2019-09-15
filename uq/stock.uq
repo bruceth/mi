@@ -8,11 +8,6 @@ TUID 股票 ver 0.1 (
   unique (symbol),
 );
 
-MAP UserStocks (
-  key user int not null,
-  key stock id 股票 not null,
-);
-
 TUID Tag (
   id,
   main name char(10) not null,
@@ -53,5 +48,16 @@ RETURNS ret (
   into ret select a.id, a.name
     from Tag as a
     where a.user=$user;
+};
+
+QUERY TagsStockCount ()
+RETURNS ret (
+  id ID,
+  count int
+) {
+  into ret select a.tag as id, count(*) as count
+    from TagStock as a 
+    where a.user=$user
+    group by a.tag;
 };
 
