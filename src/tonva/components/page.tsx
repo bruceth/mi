@@ -67,8 +67,9 @@ class ScrollView extends React.Component<ScrollViewProps, null> {
 }
 
 export interface Tab extends ScrollProps {
-    title: string;
+    title: string | JSX.Element;    
     icon?: string;
+    className?: string;
     content?: JSX.Element | (()=>JSX.Element);
     header?: string;
     isSelected?: boolean;
@@ -168,17 +169,17 @@ export class Page extends React.Component<PageProps, PageState> {
         let cur = this.state.cur;
         let tabs = <div>{
                 this.state.tabs.map((tab, index) => {
-                    const {icon, isSelected, title, redDot} = tab;
+                    const {icon, isSelected, title, redDot, className} = tab;
                     let img:any, redDotView:any, cn:any;
                     if (icon !== undefined) img = <img src={icon} />;
                     if (redDot !== undefined) {
                         let v = redDot.get();
                         if (v < 0) {
-                            cn = classNames('red-dot');
+                            cn = classNames('red-dot', className);
                             redDotView = <u />;
                         }
                         else if (v > 0) {
-                            cn = classNames('red-dot', 'num');
+                            cn = classNames('red-dot', 'num', className);
                             redDotView = <u>{v}</u>;
                         }
                     }
