@@ -16,17 +16,19 @@ export class VHome extends VPage<CMiApp> {
         this.openPage(this.render);
     }
     render = (param?: any): JSX.Element => {
-        let { cHome } = this.controller;
+        let { cHome, cExporer } = this.controller;
         let faceTabs = [
-            { name: 'home', label: '首页', icon: 'home', content: cHome.tab, notify: undefined/*store.homeCount*/ },
+            { name: 'home', label: '首页', icon: 'home', content: cHome.tab, notify: undefined, load:async()=>{await cHome.load()} },
+            { name: 'explorer', label: '发现', icon: 'search', content: cExporer.tab, load: async()=>{await cExporer.load()} },
             { name: 'me', label: '我的', icon: 'user', content: meTab }
         ].map(v => {
-            let { name, label, icon, content, notify } = v;
+            let { name, label, icon, content, notify, load } = v;
             return {
                 name: name,
                 caption: (selected: boolean) => TabCaptionComponent(label, icon, color(selected)),
                 content: content,
                 notify: notify,
+                load: load,
             }
         });
         return <Page header={false}>

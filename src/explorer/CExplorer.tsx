@@ -4,15 +4,14 @@ import { PageItems, Controller } from 'tonva';
 import { CUqBase } from '../CUqBase';
 import { CStockInfo, NStockInfo } from '../stockinfo';
 import { VSiteHeader } from './VSiteHeader';
-import { VSearchHeader } from './VSearchHeader';
-import { VHome } from './VHome';
+import { VExplorer } from './VExplorer';
 import { CMiApp } from 'CMiApp';
 
 class HomePageItems<T> extends PageItems<T> {
-    cHome: CHome;
-    constructor(cHome: CHome) {
+    ce: CExplorer;
+    constructor(cHome: CExplorer) {
         super(true);
-        this.cHome = cHome;
+        this.ce = cHome;
         this.pageSize = 30;
         this.firstSize = 30;
     }
@@ -21,10 +20,10 @@ class HomePageItems<T> extends PageItems<T> {
             name:'pe',
             pageStart:pageStart,
             pageSize:pageSize,
-            user:this.cHome.user.id,
+            user:this.ce.user.id,
             yearlen: 1,
         };
-        let result = await this.cHome.cApp.miApi.process(query, []);
+        let result = await this.ce.cApp.miApi.process(query, []);
         if (Array.isArray(result) === false) return [];
         return result as any[];
     }
@@ -33,12 +32,8 @@ class HomePageItems<T> extends PageItems<T> {
     }
 }
 
-export class CHome extends CUqBase {
+export class CExplorer extends CUqBase {
     PageItems: PageItems<any> = new HomePageItems<any>(this);
-
-    constructor(cApp:CMiApp) {
-        super(cApp);
-    }
 
     onPage = () => {
         this.PageItems.more();
@@ -49,25 +44,18 @@ export class CHome extends CUqBase {
     }
 
     async internalStart(param: any) {
-        
     }
 
     async load() {
-        this.searchMain('');
+      this.searchMain('');
     }
 
     renderSiteHeader = () => {
         return this.renderView(VSiteHeader);
     }
-
-    renderSearchHeader = (size?: string) => {
-        return this.renderView(VSearchHeader, size);
-    }
-
-    
+   
     renderHome = () => {
-        //return this.vHome.render(undefined);
-        return this.renderView(VHome);
+        return this.renderView(VExplorer);
     }
     
 
@@ -77,7 +65,7 @@ export class CHome extends CUqBase {
     tab = () => <this.renderHome />;
 
     openStockInfo = (item:NStockInfo) => {
-        let cStockInfo = this.newC(CStockInfo); // new CStockInfo(this.cApp, undefined);
+        let cStockInfo = this.newC(CStockInfo);
         cStockInfo.start(item);
     }
 }
