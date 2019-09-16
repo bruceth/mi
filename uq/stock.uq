@@ -60,8 +60,7 @@ returns ret (
   c int,
   stock bigint
 ) {
-
-  into ret select tag, tag1, count(*) as c, sum(a.stock) as stock
+  into ret select tag, tag1, count(a.stock) as c, sum(a.stock) as stock
     from TagStock as a
     where a.user=$user
     group by a.tag, a.tag+1 as tag1;
