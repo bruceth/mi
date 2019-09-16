@@ -6,8 +6,10 @@ import { MiApi } from './net';
 import {nav} from 'tonva';
 import { VHome } from 'ui/main';
 import { CUqBase } from './CUqBase';
+import { CExplorer } from './explorer';
 
 export class CMiApp extends CAppBase {
+  cExporer: CExplorer;
   cHome: CHome;
   miApi: MiApi;
 
@@ -21,11 +23,11 @@ export class CMiApp extends CAppBase {
 
     let miHost = consts.isDevelopment ? consts.miApiHostDebug : consts.miApiHost;
     this.miApi = new MiApi(miHost, 'fsjs/', 'miapi', token, false);
-    this.cHome = this.newC(CHome); //new CHome(this, undefined);
+    this.cExporer = this.newC(CExplorer);
+    this.cHome = this.newC(CHome);
     let params = [];
     //let ret = await this.miApi.page('q_stocksquery', params, 0, 100);
     let env = process.env;
-    this.cHome.searchMain('');
     //this.showMain();
     this.openVPage(VHome);
   }
